@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_start_guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_start_guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_end_guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_robot_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_start_guide_line"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:stateListAnimator="@xml/button_animation"
+        app:lottie_rawRes="@raw/lottierobotblack"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        app:strokeColor="?attr/attrDayBlackNightWhiteColor"
+        app:lottie_speed="2.5" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="?attr/colorOnPrimary"
+        android:scaleType="centerInside"
+        android:src="@drawable/avd_robot_black"
+        app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_start_guide_line"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        app:strokeColor="?attr/attrDayBlackNightWhiteColor"
+        android:stateListAnimator="@xml/button_animation"
+        app:strokeWidth="0.5dip" >
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
