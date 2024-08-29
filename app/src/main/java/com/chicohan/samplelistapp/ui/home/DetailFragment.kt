@@ -3,11 +3,9 @@ package com.chicohan.samplelistapp.ui.home
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -102,7 +100,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     "No"
                 ) {
                     if (it){
-                        homeViewModel.deleteToDoItem(itemId)
+                        homeViewModel.deleteTask(itemId)
                         findNavController().popBackStack()
                     }
 

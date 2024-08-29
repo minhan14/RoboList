@@ -54,7 +54,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             val name = editTextUserName.text.toString().trim()
             val password = editTextPassword.text.toString().trim()
             val confirmPassword = editTextConfirmPassword.text.toString().trim()
-
             /**
             - call the register function
              */

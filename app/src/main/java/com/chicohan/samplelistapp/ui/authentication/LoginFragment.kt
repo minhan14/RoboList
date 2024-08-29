@@ -33,7 +33,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     companion object {
         const val LOGIN_SUCCESSFUL: String = "LOGIN_SUCCESSFUL"
     }
-
     private lateinit var binding: FragmentLoginBinding
 
     @Inject
@@ -96,8 +95,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun loadAnimatedVectorDrawable(imageView: ImageView, avdResId: Int) {
-        glide
-            .load(avdResId)
+        glide.load(avdResId)
             .into(object : CustomTarget<Drawable>() {
                 override fun onResourceReady(
                     resource: Drawable,
@@ -108,7 +106,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         resource.start()
                     }
                 }
-
                 override fun onLoadCleared(placeholder: Drawable?) {
                     imageView.setImageDrawable(placeholder)
                 }

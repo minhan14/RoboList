@@ -22,10 +22,13 @@ object EncryptionHelper  {
     private const val GCM_IV_LENGTH = 12
     private const val GCM_TAG_LENGTH = 128
     private const val KEY_ALIAS = "my_secure_aes_key"
+
     init {
         generateAndStoreKey()
     }
-    // Generate a 256-bit AES key
+    /**
+     *Generate a 256-bit AES key
+     */
     private fun generateAndStoreKey(): SecretKey {
         val keyStore = KeyStore.getInstance("AndroidKeyStore").apply {
             load(null)
@@ -45,7 +48,6 @@ object EncryptionHelper  {
             keyGen.init(keyGenParameterSpec)
             return keyGen.generateKey()
         } else {
-            // Retrieve the existing key
             return keyStore.getKey(KEY_ALIAS, null) as SecretKey
         }
     }
@@ -59,13 +61,13 @@ object EncryptionHelper  {
     fun encrypt(data: String, secretKey: SecretKey): String {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         cipher.init(Cipher.ENCRYPT_MODE, secretKey)
-        val iv = cipher.iv // Get the automatically generated IV
+        val iv = cipher.iv
         val encryptedData = cipher.doFinal(data.toByteArray(Charsets.UTF_8))
-        val combined = iv + encryptedData // Prepend the IV to the encrypted data
-        return Base64.getEncoder().encodeToString(combined) // Convert to Base64 string
+        val combined = iv + encryptedData
+        return Base64.getEncoder().encodeToString(combined)
     }
     fun decrypt(encryptedData: String, secretKey: SecretKey): String {
-        val decodedData = Base64.getDecoder().decode(encryptedData) // Decode Base64 string to ByteArray
+        val decodedData = Base64.getDecoder().decode(encryptedData)
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         val iv = decodedData.copyOfRange(0, GCM_IV_LENGTH) // Extract the IV (first 12 bytes)
         val actualEncryptedData = decodedData.copyOfRange(GCM_IV_LENGTH, decodedData.size)

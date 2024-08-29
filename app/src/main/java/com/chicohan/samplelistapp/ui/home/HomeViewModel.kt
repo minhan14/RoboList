@@ -8,9 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.chicohan.samplelistapp.data.entity.SampleListItem
 import com.chicohan.samplelistapp.data.entity.User
 import com.chicohan.samplelistapp.data.repository.ToDoListRepository
-import com.chicohan.samplelistapp.domain.UseCases
 import com.chicohan.samplelistapp.helper.UserPreferences
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +18,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.switchMap
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -72,7 +69,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun deleteToDoItem(itemId: Int) = viewModelScope.launch {
+    fun deleteTask(itemId: Int) = viewModelScope.launch {
         toDoListRepository.deleteTodoItem(itemId)
     }
 

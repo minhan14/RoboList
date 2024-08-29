@@ -1,6 +1,5 @@
 package com.chicohan.samplelistapp.data.repository
 
-import android.util.Log
 import com.chicohan.samplelistapp.data.dao.UserDao
 import com.chicohan.samplelistapp.data.entity.User
 import com.chicohan.samplelistapp.helper.EncryptionHelper

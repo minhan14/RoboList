@@ -45,7 +45,12 @@ class MyListAdapter(private val onMoreClickCallback: ((item: SampleListItem) -> 
             val isEven: Boolean = position % 2 == 0
             val myTextColor =
                 ContextCompat.getColor(root.context, if (isEven) R.color.dim else R.color.white)
-            txtContainer.setBackgroundColor(ContextCompat.getColor(root.context,if (isEven) R.color.white else R.color.toDoCardBackground))
+            txtContainer.setBackgroundColor(
+                ContextCompat.getColor(
+                    root.context,
+                    if (isEven) R.color.white else R.color.toDoCardBackground
+                )
+            )
             if (isEven) {
                 root.rotation = -4f
 //                val layoutParams = root.layoutParams as RecyclerView.LayoutParams
@@ -70,7 +75,8 @@ class MyListAdapter(private val onMoreClickCallback: ((item: SampleListItem) -> 
             txtBody.text = myItem.description
             txtDate.setTextColor(myTextColor)
             txtBody.setTextColor(myTextColor)
-            Glide.with(this.root.context).load(myItem.imageUri).into(ivMyPhoto)
+            Glide.with(this.root.context).load(myItem.imageUri).error(R.drawable.dragon)
+                .into(ivMyPhoto)
         }
     }
 

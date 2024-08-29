@@ -31,7 +31,6 @@ class ToDoListRepositoryImpl @Inject constructor(
                 description = task.description
             )
         }
-
     }
 
     override suspend fun deleteTodoItem(itemId: Int) {

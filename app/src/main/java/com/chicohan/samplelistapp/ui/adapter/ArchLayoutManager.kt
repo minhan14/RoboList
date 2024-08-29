@@ -29,7 +29,6 @@ class ArchLayoutManager(
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
         super.onLayoutChildren(recycler, state)
-
         fill(recycler, state)
     }
 
@@ -39,8 +38,6 @@ class ArchLayoutManager(
         for (itemIndex in 0 until itemCount) {
             val view = recycler.getViewForPosition(itemIndex)
             addView(view)
-
-            // Measure child with WRAP_CONTENT
             measureChildWithMargins(view, 0, 0)
 
             val viewWidth = getDecoratedMeasuredWidth(view)

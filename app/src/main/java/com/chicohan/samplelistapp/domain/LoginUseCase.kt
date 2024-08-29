@@ -5,7 +5,6 @@ import com.chicohan.samplelistapp.data.entity.User
 import com.chicohan.samplelistapp.data.repository.AuthenticationRepository
 import com.chicohan.samplelistapp.domain.model.Resource
 import com.chicohan.samplelistapp.helper.UserPreferences
-import com.chicohan.samplelistapp.helper.toast
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
