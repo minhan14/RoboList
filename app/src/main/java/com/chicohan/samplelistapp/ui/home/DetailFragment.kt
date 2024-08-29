@@ -16,7 +16,9 @@ import com.bumptech.glide.RequestManager
 import com.chicohan.samplelistapp.R
 import com.chicohan.samplelistapp.data.entity.SampleListItem
 import com.chicohan.samplelistapp.databinding.FragmentDetailBinding
+import com.chicohan.samplelistapp.helper.createGenericAlertDialog
 import com.chicohan.samplelistapp.helper.toast
+import com.chicohan.samplelistapp.helper.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -79,19 +81,37 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         glide.load(item.imageUri)
             .into(ivMyPhoto)
         editTextTextMultiLineDescription.setText(item.description)
-        "Confirm Edit Task".also { buttonConfirm.text = it }
+        "Edit Task".also { buttonConfirm.text = it }
     }
 
     private fun setUpViews(ops: TaskOperations) = with(binding) {
+        btnDelete.visible(ops == TaskOperations.EDIT_TASK)
         buttonCancel.setOnClickListener {
             findNavController().popBackStack()
         }
         ivMyPhoto.setOnClickListener {
             openGallery()
         }
-        binding.buttonConfirm.setOnClickListener {
+        btnDelete.setOnClickListener {
+            val itemId = navArgs.MyToDoItemArgs?.id ?: return@setOnClickListener
             lifecycleScope.launch {
+                requireContext().createGenericAlertDialog(
+                    "Delete Task",
+                    "Are you sure you want to Delete this Task?",
+                    "Yes",
+                    "No"
+                ) {
+                    if (it){
+                        homeViewModel.deleteToDoItem(itemId)
+                        findNavController().popBackStack()
+                    }
 
+                }
+
+            }
+        }
+        buttonConfirm.setOnClickListener {
+            lifecycleScope.launch {
                 val userId = homeViewModel.user.first()?.id ?: return@launch
                 val name = txtName.text.toString()
                 val description = editTextTextMultiLineDescription.text.toString()
@@ -116,7 +136,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     TaskOperations.DELETE_TASK -> {
                     }
                 }
-
                 findNavController().popBackStack()
             }
 

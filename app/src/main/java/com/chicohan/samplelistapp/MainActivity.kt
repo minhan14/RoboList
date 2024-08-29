@@ -22,10 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         /**
          * delay splash animation for specific time
+         * commented due to having bugs on config changes
          */
-        val splashScreen = installSplashScreen()
-        splashScreen.setKeepOnScreenCondition { keepSplashOnScreen }
-        Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
+         installSplashScreen()
+//        splashScreen.setKeepOnScreenCondition { keepSplashOnScreen }
+//        Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

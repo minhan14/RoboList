@@ -36,7 +36,7 @@
             android:id="@+id/txt_header"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins"
             android:padding="4dp"
             android:text="@string/create_new_task"
@@ -45,11 +45,26 @@
             app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
             app:layout_constraintTop_toTopOf="@id/horizontal_start_guide_line" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btnDelete"
+            style="@style/AppCompatImageButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:stateListAnimator="@xml/button_animation"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_delete_trash_can"
+            app:lottie_speed="2.5"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:strokeColor="?attr/attrDayBlackNightWhiteColor"
+            app:layout_constraintTop_toTopOf="@id/txt_header"
+            app:layout_constraintBottom_toBottomOf="@id/txt_header"
+            app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"/>
+
         <EditText
             android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
             android:hint="@string/task_name"

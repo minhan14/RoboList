@@ -10,4 +10,6 @@ interface ToDoListRepository {
     suspend fun getToDoItems(userId: Int): Flow<List<SampleListItem>>
 
     suspend fun updateTodoItems(itemId: Int, task: SampleListItem)
+
+    suspend fun deleteTodoItem(itemId: Int)
 }

@@ -63,12 +63,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             isSuccess.getContentIfNotHandled()?.let { user ->
                 savedStateHandle[LOGIN_SUCCESSFUL] = true
                 Log.d("LoginFragment", "LoginUiState>>${user}")
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = requireActivity().intent
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                    requireActivity().finishAffinity()
-                    startActivity(intent)
-                }, 100)
+                val intent = requireActivity().intent
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                requireActivity().finish()
+                startActivity(intent)
             }
         }
     }

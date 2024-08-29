@@ -72,5 +72,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun deleteToDoItem(itemId: Int) = viewModelScope.launch {
+        toDoListRepository.deleteTodoItem(itemId)
+    }
+
 
 }

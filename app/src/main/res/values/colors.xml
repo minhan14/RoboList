@@ -7,9 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
     <color name="dim">#848383</color>
-
+    <color name="toDoCardBackground">#4D68FF</color>
     <color name="hint_color_login_day">#FF000000</color>
     <color name="login_btn_color">#6071C0</color>
 </resources>

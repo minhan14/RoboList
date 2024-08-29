@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cvRoot"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:focusable="true"
-    android:layout_marginEnd="10dp"
+    android:layout_height="140dp"
     android:layout_marginStart="15dp"
-    app:cardBackgroundColor="#3D5AFE"
+    android:layout_marginEnd="10dp"
+    android:focusable="true"
+
     app:cardCornerRadius="18dp"
     app:cardElevation="15dp"
     app:layout_constraintEnd_toEndOf="parent"
@@ -18,13 +18,15 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/txtContainer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:layout_marginStart="272dp"
-            android:layout_toStartOf="@+id/ivMyPhoto">
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/ivMyPhoto"
+            android:background="#4D68FF"
+            android:padding="8dp">
+
 
             <TextView
                 android:id="@+id/txtHeader"
@@ -57,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="13dp"
-                android:layout_marginBottom="8dp"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="@string/sample_list"
@@ -74,10 +75,9 @@
 
         <ImageView
             android:id="@+id/ivMyPhoto"
-            android:layout_width="130dp"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
             android:contentDescription="@string/loading"
             android:scaleType="centerCrop"
             android:src="@drawable/dragon" />

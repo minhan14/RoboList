@@ -34,4 +34,14 @@ class ToDoListRepositoryImpl @Inject constructor(
 
     }
 
+    override suspend fun deleteTodoItem(itemId: Int) {
+        try {
+            withContext(Dispatchers.IO) {
+                db.toToDao().deleteToDoItemById(itemId = itemId)
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
+
 }

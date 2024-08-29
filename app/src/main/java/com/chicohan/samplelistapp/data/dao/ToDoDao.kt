@@ -17,4 +17,7 @@ interface ToDoDao {
 
     @Query("UPDATE todo_items SET name = :name, imageUri = :imageUri, description = :description WHERE id = :itemId")
     suspend fun updateToDoItemById(itemId: Int, name: String, imageUri: String?, description: String): Int
+
+    @Query("DELETE FROM todo_items WHERE id = :itemId")
+    suspend fun deleteToDoItemById(itemId: Int): Int
 }

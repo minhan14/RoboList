@@ -1,5 +1,6 @@
 package com.chicohan.samplelistapp.helper
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.Toast
@@ -27,6 +28,30 @@ fun View.show() {
 
 fun Context.toast(msg: String) {
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.createGenericAlertDialog(
+    title: String,
+    message: String,
+    positiveButtonText: String,
+    negativeButtonText: String,
+    callback: (Boolean) -> Unit
+) {
+    val builder = AlertDialog.Builder(this)
+    builder.apply {
+        setTitle(title)
+        setMessage(message)
+        setPositiveButton(positiveButtonText) { _, _ ->
+            callback(true)
+        }
+        setNegativeButton(negativeButtonText) { dialog, _ ->
+            dialog.dismiss()
+            callback(false)
+        }
+    }
+
+    val alertDialog = builder.create()
+    alertDialog.show()
 }
 
 /**

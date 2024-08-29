@@ -13,5 +13,4 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE name = :name")
     suspend fun getUserByName(name: String): User?
 
-
 }

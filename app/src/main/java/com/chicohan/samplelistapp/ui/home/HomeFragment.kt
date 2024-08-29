@@ -1,27 +1,22 @@
 package com.chicohan.samplelistapp.ui.home
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.chicohan.samplelistapp.R
 import com.chicohan.samplelistapp.data.entity.SampleListItem
 import com.chicohan.samplelistapp.data.entity.User
 import com.chicohan.samplelistapp.databinding.FragmentHomeBinding
 import com.chicohan.samplelistapp.helper.MockItem
-import com.chicohan.samplelistapp.helper.UserPreferences
 import com.chicohan.samplelistapp.helper.collectFlowWithLifeCycleAtStateStart
 import com.chicohan.samplelistapp.ui.adapter.ArchLayoutManager
 import com.chicohan.samplelistapp.ui.adapter.MyListAdapter
-import com.chicohan.samplelistapp.ui.authentication.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
 
@@ -32,8 +27,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     val list = MockItem.sampleList.toMutableList()
-
-    private val authenticationViewModel by viewModels<AuthenticationViewModel>()
 
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
@@ -59,17 +52,13 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUpViews()
 //        myListAdapter.submitList(MockItem.sampleList)
         collectFlowWithLifeCycleAtStateStart(homeViewModel.user) { user: User? ->
-            user?.let {
-                binding.textHome.text = user.name
-            } ?: run {
-                findNavController().navigate(R.id.action_navigation_home_to_navigation_login)
-            }
+            if (user == null) findNavController().navigate(R.id.action_navigation_home_to_navigation_login)
         }
         collectFlowWithLifeCycleAtStateStart(homeViewModel.toDoItems) {
             myListAdapter.submitList(it)
@@ -79,8 +68,6 @@ class HomeFragment : Fragment() {
     private fun setUpViews() = with(binding) {
         recyclerViewMyList.apply {
             layoutManager = ArchLayoutManager(requireContext())
-//            layoutManager =
-//                LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             adapter = myListAdapter
         }
     }
@@ -93,7 +80,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.animationRobotView.setOnClickListener {
-            homeViewModel.logoutUser()
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_profile)
         }
         binding.btnAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(

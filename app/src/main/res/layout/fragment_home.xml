@@ -35,7 +35,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/baseline_add_box_24"
-        android:backgroundTint="?attr/attrDayBlackNightWhiteColor"
+        android:backgroundTint="#2979FF"
         android:stateListAnimator="@xml/button_animation"
         app:layout_constraintBottom_toBottomOf="@id/text_home"
         app:layout_constraintEnd_toEndOf="parent"

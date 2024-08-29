@@ -45,6 +45,7 @@ class MyListAdapter(private val onMoreClickCallback: ((item: SampleListItem) -> 
             val isEven: Boolean = position % 2 == 0
             val myTextColor =
                 ContextCompat.getColor(root.context, if (isEven) R.color.dim else R.color.white)
+            txtContainer.setBackgroundColor(ContextCompat.getColor(root.context,if (isEven) R.color.white else R.color.toDoCardBackground))
             if (isEven) {
                 root.rotation = -4f
 //                val layoutParams = root.layoutParams as RecyclerView.LayoutParams
@@ -53,7 +54,7 @@ class MyListAdapter(private val onMoreClickCallback: ((item: SampleListItem) -> 
 //                root.layoutParams = layoutParams
 //                root.translationX =
 //                    holder.itemView.context.resources.displayMetrics.widthPixels * 0.02f
-                root.setCardBackgroundColor(ContextCompat.getColor(root.context, R.color.white))
+
             } else {
                 root.rotation = 2f
                 val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
