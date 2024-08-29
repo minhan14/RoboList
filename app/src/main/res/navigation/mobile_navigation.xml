@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_login"
-            app:destination="@id/navigation_login" />
+            app:destination="@id/navigation_login"
+            />
+        <action
+            android:id="@+id/action_navigation_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+
     </fragment>
 
     <fragment
@@ -23,6 +28,10 @@
         <action
             android:id="@+id/action_navigation_login_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_home"
+            app:destination="@id/navigation_home"
+            />
     </fragment>
 
     <fragment
@@ -35,4 +44,19 @@
         android:name="com.chicohan.samplelistapp.ui.authentication.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.chicohan.samplelistapp.ui.home.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="MyToDoItemArgs"
+            app:argType="com.chicohan.samplelistapp.data.entity.SampleListItem"
+            app:nullable="true" />
+        <argument
+            android:name="operationArgs"
+            app:argType="com.chicohan.samplelistapp.ui.home.Operations"
+            app:nullable="true" />
+
+    </fragment>
 </navigation>

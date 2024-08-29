@@ -11,6 +11,8 @@ import com.chicohan.samplelistapp.data.dao.UserDao
 import com.chicohan.samplelistapp.data.database.AppDatabase
 import com.chicohan.samplelistapp.data.repository.AuthenticationRepository
 import com.chicohan.samplelistapp.data.repository.AuthenticationRepositoryImpl
+import com.chicohan.samplelistapp.data.repository.ToDoListRepository
+import com.chicohan.samplelistapp.data.repository.ToDoListRepositoryImpl
 import com.chicohan.samplelistapp.domain.RegisterUseCase
 import dagger.Module
 import dagger.Provides
@@ -41,6 +43,13 @@ object AppModule {
     fun provideUserRepository(db: AppDatabase): AuthenticationRepository {
         return AuthenticationRepositoryImpl(db.userDao())
     }
+
+    @Provides
+    @Singleton
+    fun provideToDoRepository(db: AppDatabase): ToDoListRepository {
+        return ToDoListRepositoryImpl(db)
+    }
+
     @Provides
     fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 

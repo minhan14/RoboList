@@ -27,46 +27,73 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnAdd"
+        style="@style/AppCompatImageButtonStyle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/baseline_add_box_24"
+        android:backgroundTint="?attr/attrDayBlackNightWhiteColor"
+        android:stateListAnimator="@xml/button_animation"
+        app:layout_constraintBottom_toBottomOf="@id/text_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_home" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_robot_view"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+        android:stateListAnimator="@xml/button_animation"
+        app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
         app:layout_constraintTop_toBottomOf="@id/horizontal_start_guide_line"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:stateListAnimator="@xml/button_animation"
         app:lottie_rawRes="@raw/lottierobotblack"
+        app:lottie_speed="2.5"
         app:shapeAppearanceOverlay="@style/circleImageView"
-        app:strokeColor="?attr/attrDayBlackNightWhiteColor"
-        app:lottie_speed="2.5" />
+        app:strokeColor="?attr/attrDayBlackNightWhiteColor" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:visibility="gone"
         android:background="?attr/colorOnPrimary"
         android:scaleType="centerInside"
         android:src="@drawable/avd_robot_black"
+        android:stateListAnimator="@xml/button_animation"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
         app:layout_constraintTop_toBottomOf="@id/horizontal_start_guide_line"
         app:shapeAppearanceOverlay="@style/circleImageView"
         app:strokeColor="?attr/attrDayBlackNightWhiteColor"
-        android:stateListAnimator="@xml/button_animation"
-        app:strokeWidth="0.5dip" >
-    </com.google.android.material.imageview.ShapeableImageView>
+        app:strokeWidth="0.5dip" />
 
     <TextView
         android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/poppins"
+        android:padding="4dp"
+        android:text="@string/my_tasks"
         android:textAlignment="center"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/animation_robot_view"
+        app:layout_constraintStart_toEndOf="@id/animation_robot_view"
+        app:layout_constraintTop_toTopOf="@id/animation_robot_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMyList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_home"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_my_list_items" />
 </androidx.constraintlayout.widget.ConstraintLayout>

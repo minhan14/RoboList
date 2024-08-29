@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -61,10 +63,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             isSuccess.getContentIfNotHandled()?.let { user ->
                 savedStateHandle[LOGIN_SUCCESSFUL] = true
                 Log.d("LoginFragment", "LoginUiState>>${user}")
-                val intent = requireActivity().intent
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                requireActivity().finish()
-                startActivity(intent)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val intent = requireActivity().intent
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    requireActivity().finishAffinity()
+                    startActivity(intent)
+                }, 100)
             }
         }
     }

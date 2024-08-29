@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.DetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.025" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92" />
+
+        <TextView
+            android:id="@+id/txt_header"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins"
+            android:padding="4dp"
+            android:text="@string/create_new_task"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toTopOf="@id/horizontal_start_guide_line" />
+
+        <EditText
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/task_name"
+            android:padding="4dp"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/dim"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/txt_header" />
+
+        <ImageView
+            android:id="@+id/ivMyPhoto"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/txt_multiline_background"
+            android:padding="3dp"
+            android:src="@drawable/baseline_landscape_24"
+            app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/txt_name"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rootReason"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/ivMyPhoto">
+
+            <EditText
+                android:id="@+id/editTextTextMultiLineDescription"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/txt_multiline_background"
+                android:ems="10"
+                android:gravity="left|top"
+                android:hint="@string/description"
+                android:maxLines="6"
+                android:padding="12dp"
+                android:textColor="?attr/attrDayBlackNightWhiteColor"
+                android:textColorHint="@color/dim"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonConfirm"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/round_corner_background"
+            android:fontFamily="@font/poppins_semibold"
+            android:stateListAnimator="@xml/button_animation"
+            android:text="@string/confirm_task"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/buttonCancel"
+            app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/rootReason" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/round_corner_background"
+            android:backgroundTint="#EB6C85"
+            android:fontFamily="@font/poppins_semibold"
+            android:stateListAnimator="@xml/button_animation"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/vertical_start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/buttonConfirm" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
