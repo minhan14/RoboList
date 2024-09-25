@@ -30,7 +30,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3.2.1-node20
       - name: Upload a build artifact
-        run: echo Uploading artifact
         with:
           name: RoboList.apk
           path: app/build/outputs/apk/app-debug.apk
