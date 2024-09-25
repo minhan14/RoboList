@@ -35,9 +35,16 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
+
+      - name: Download APK artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: RoboList.apk
+          path: .
 
       - name: Get latest tag
         id: get_tag
@@ -65,11 +72,10 @@ jobs:
             echo "RELEASE_EXISTS=true" >> $GITHUB_ENV
           else
             echo "RELEASE_EXISTS=false" >> $GITHUB_ENV
-          fi
 
       - name: Create GitHub Release
         id: create_release
-        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
+        if: env.RELEASE_EXISTS == 'false'
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.next_version.outputs.VERSION }}
@@ -81,10 +87,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Upload APK to Release
-        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
+        if: env.RELEASE_EXISTS == 'false'
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/debug/app-debug.apk
+          asset_path: RoboList.apk
           asset_name: RoboList-${{ steps.next_version.outputs.VERSION }}.apk
           asset_content_type: application/vnd.android.package-archive
