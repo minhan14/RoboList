@@ -32,20 +32,6 @@ jobs:
           name: RoboList.apk
           path: app/build/outputs/apk/debug/app-debug.apk
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4.1.7
-
-      - name: Download APK artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: RoboList.apk
-          path: .
-
       - name: Get latest tag
         id: get_tag
         run: |
@@ -76,7 +62,7 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
-        if: env.RELEASE_EXISTS == 'false'
+        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.next_version.outputs.VERSION }}
@@ -88,10 +74,67 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Upload APK to Release
-        if: env.RELEASE_EXISTS == 'false'
+        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: RoboList.apk
+          asset_path: app/build/outputs/apk/debug/app-debug.apk
           asset_name: RoboList-${{ steps.next_version.outputs.VERSION }}.apk
           asset_content_type: application/vnd.android.package-archive
+
+#  release:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v4.1.7
+#
+#      - name: Get latest tag
+#        id: get_tag
+#        run: |
+#          TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+#          echo "Latest Tag: $TAG"
+#          echo "::set-output name=LATEST_TAG::$TAG"
+#
+#      - name: Calculate next version
+#        id: next_version
+#        run: |
+#          LATEST_TAG=${{ steps.get_tag.outputs.LATEST_TAG }}
+#          VERSION=${LATEST_TAG#v}
+#          IFS='.' read -r MAJOR MINOR PATCH <<<"$VERSION"
+#          PATCH=$((PATCH+1))
+#          NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+#          echo "Next version: $NEW_VERSION"
+#          echo "::set-output name=VERSION::$NEW_VERSION"
+#
+#      - name: Check if release already exists
+#        id: check_release
+#        run: |
+#          if git tag -l | grep -q "${{ steps.next_version.outputs.VERSION }}"; then
+#            echo "Release with tag ${{ steps.next_version.outputs.VERSION }} already exists."
+#            echo "RELEASE_EXISTS=true" >> $GITHUB_ENV
+#          else
+#            echo "RELEASE_EXISTS=false" >> $GITHUB_ENV
+#          fi
+#
+#      - name: Create GitHub Release
+#        id: create_release
+#        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
+#        uses: actions/create-release@v1
+#        with:
+#          tag_name: ${{ steps.next_version.outputs.VERSION }}
+#          release_name: "Release ${{ steps.next_version.outputs.VERSION }}"
+#          body: "Automated release with APK for version ${{ steps.next_version.outputs.VERSION }}."
+#          draft: false
+#          prerelease: false
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+#
+#      - name: Upload APK to Release
+#        if: env.RELEASE_EXISTS == 'false' # Only run if the release does not exist
+#        uses: actions/upload-release-asset@v1
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: app/build/outputs/apk/debug/app-debug.apk
+#          asset_name: RoboList-${{ steps.next_version.outputs.VERSION }}.apk
+#          asset_content_type: application/vnd.android.package-archive
