@@ -19,11 +19,9 @@ class MyListAdapter(private val onMoreClickCallback: ((item: SampleListItem) -> 
         override fun areItemsTheSame(oldItem: SampleListItem, newItem: SampleListItem): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: SampleListItem, newItem: SampleListItem): Boolean {
             return oldItem == newItem
         }
-
     }
 
     inner class MyListItemViewHolder(val binding: ItemMyListItemsBinding) :

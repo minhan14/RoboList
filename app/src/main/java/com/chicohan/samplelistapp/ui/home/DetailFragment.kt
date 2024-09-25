@@ -45,9 +45,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             val photoUri = result.data?.data
             imageUri = photoUri.toString()
             imageUri?.let {
-                glide.load(imageUri).into(binding.ivMyPhoto)
+                glide.load(it).into(binding.ivMyPhoto)
             }
-
         }
     }
 
@@ -63,7 +62,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     val item = navArgs.MyToDoItemArgs ?: return@let
                     setUpEditView(item)
                 }
-
                 TaskOperations.DELETE_TASK -> Unit
             }
         } ?: run {
@@ -103,7 +101,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                         homeViewModel.deleteTask(itemId)
                         findNavController().popBackStack()
                     }
-
                 }
 
             }
@@ -125,14 +122,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 )
                 when (ops) {
                     TaskOperations.ADD_NEW_TASK -> homeViewModel.addTask(task)
-
                     TaskOperations.EDIT_TASK -> {
                         val itemId = navArgs.MyToDoItemArgs?.id ?: return@launch
                         homeViewModel.editTask(itemId = itemId, task)
                     }
-
-                    TaskOperations.DELETE_TASK -> {
-                    }
+                    TaskOperations.DELETE_TASK -> Unit
                 }
                 findNavController().popBackStack()
             }

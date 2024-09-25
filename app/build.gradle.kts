@@ -1,9 +1,10 @@
 plugins {
-    kotlin("kapt")
+  //  kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.navigation.safeargs)
+    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
 }
 
@@ -57,15 +58,15 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation (libs.glide)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.lottie)
 
 
 }
-kapt {
-    correctErrorTypes = true
-}
+//kapt {
+//    correctErrorTypes = true
+//}
