@@ -34,7 +34,6 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
@@ -49,9 +48,11 @@ jobs:
       - name: Calculate next version
         id: next_version
         run: |
-          # Extract version numbers
-          IFS='.' read -r MAJOR MINOR PATCH <<<"${{ steps.get_tag.outputs.LATEST_TAG/v/ }}"
-          # Increment patch version
+          # Remove the 'v' from the tag (if present) and extract version numbers
+          LATEST_TAG=${{ steps.get_tag.outputs.LATEST_TAG }}
+          VERSION=${LATEST_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH <<<"$VERSION"
+          # Increment the patch version
           PATCH=$((PATCH+1))
           # Form new version
           NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
@@ -70,7 +71,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 5: Upload the APK to the release
       - name: Upload APK to Release
         uses: actions/upload-release-asset@v1
         with:
