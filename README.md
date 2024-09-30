@@ -5,7 +5,7 @@
 # Domain layer use-cases
 
 Demo Gif
-<img src="https://github.com/minhan14/RoboList/blob/main/Demo/androiddemo.gif" alt="Demo RoboList gif" title="Demo RoboList" width="500"/>
+<img src="https://github.com/minhan14/RoboList/blob/main/Demo/androiddemo.gif" alt="Demo RoboList gif" title="Demo RoboList" width="400" height="600"/>
 
 
 
