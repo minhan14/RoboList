@@ -10,6 +10,9 @@ Login and Register
 Demo Gif
 ![](https://github.com/minhan14/RoboList/blob/main/Demo/androiddemo.gif)
 
+<img src="https://github.com/minhan14/RoboList/blob/main/Demo/androiddemo.gif" alt="Demo RoboList gif" title="Demo RoboList" width="500"/>
+
+
 
 
 
